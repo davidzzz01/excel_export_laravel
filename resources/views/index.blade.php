@@ -65,6 +65,7 @@
 
     <div class="d-flex justify-content-between align-items-center">
         <div>
+            <p> <i>Quantidade de Registros:</i> <b>{{$qtd_registros  }}</b></p>
             {{ $registros->links() }}
         </div>
         <div >
@@ -79,9 +80,10 @@
 
     @import url('{{ public_path('css/bootstrap.min.css') }}');
 
- 
+
    * {
         font-family: 'Helvetica', sans-serif;
+        
     }
   
 .text-center {

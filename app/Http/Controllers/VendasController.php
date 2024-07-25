@@ -12,16 +12,15 @@ class VendasController extends Controller
 {
 
     public function index(){
-
+     
         $registros = Venda::all();
+        $qtd_registros=count($registros);
         $registros=Venda::paginate('10');
-        foreach ($registros as $registro){
-            $registro->data_venda_br= date('d/m/Y', strtotime($registro->data_venda));
-            $registro->preco= number_format($registro->preco, 2, ',', '.');
-        }
+      
+       
+        
 
-
-        return view('index', compact('registros'));
+        return view('index', compact('registros','qtd_registros'));
 }
 
 
@@ -36,13 +35,7 @@ public function gerarPDF() {
     $registros = Venda::all();
     $registros=Venda::paginate('50');
   
-    foreach ($registros as $registro) {
-    
-        $registro->data_venda_br = date('d/m/Y', strtotime($registro->data_venda));
-    
-        $registro->preco = number_format($registro->preco, 2, ',', '.');
-    }
-
+  
 
 
     $pdf = Pdf::loadView('index', compact('registros'));
@@ -50,15 +43,20 @@ public function gerarPDF() {
 
     return $pdf->download('relatório.pdf');
 }
+
 public function buscarRegistro(Request $request) {
     $nome_do_produto = $request->input('produto', ''); 
-
+    
     $registros = Venda::where('nome_produto', 'like', '%' . $nome_do_produto . '%')
         ->orderByDesc('created_at')
         ->paginate(10)
         ->withQueryString();
+    
+        $qtd_registros=count($registros);
+  
 
-    return view('index', compact('registros', 'nome_do_produto'));
+
+    return view('index', compact('registros', 'nome_do_produto','qtd_registros'));
 }
 
 
