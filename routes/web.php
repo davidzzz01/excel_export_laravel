@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [VendasController::class, 'index']);
 Route::get('/vendas',[VendasController::class, 'exportExcel'])->name('exportar');
+Route::get('/pdf',[VendasController::class, 'gerarPDF'])->name('pdf');
 
