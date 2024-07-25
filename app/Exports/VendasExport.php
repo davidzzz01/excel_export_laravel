@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Vendas;
+use App\Models\Venda;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -13,7 +13,7 @@ class VendasExport implements FromCollection
     */
     public function collection()
     {
-        return Vendas::all();
+        return Venda::all();
     }
 
     public function headings(): array

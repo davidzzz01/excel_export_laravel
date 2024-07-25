@@ -4,35 +4,71 @@
 
 <div class="container">
 
-    <table class="table table-hover table-striped">
+<div>
+
+    <div class="card mt-3 mb-4 border-light shadow">
+        <div class="card-header d-flex justify-content-between">
+        <h3>Pesquisar</h3>
+    </div>
+    <div class="card-body">
+        <form action="{{ route('buscarRegistro') }}" method="get">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 d-flex align-items-center">
+                    <label class="form-label mr-2 mt-2" for="produto">Produto:</label>
+                    <input type="text" class="form-control mr-2" name="produto" placeholder="Nome do produto" value="{{ isset($produto) ? $produto : '' }}">
+                    <button type="submit" class="btn btn-primary d-flex align-items-center mr-2" style="width: 40px; height:40px;">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <button type="submit" class="btn btn-warning d-flex  text-center align-items-center ml-2" style="width: 40px; height:40px;">
+                            <i class="fa-solid fa-delete-left "></i>
+                        </button>
+                    </button>
+                </div>
+            </div>
+        </form>
+        
+        
+    </div>
+    </div>
+
+</div>
+
+@if($registros->count() > 0)
+    <table class="table table-hover table-bordered table-striped table-condensed">
         <thead>
         <tr>
             <th class="bg-primary text-light">ID</th>
             <th class="bg-primary text-light">Nome</th>
-            <th class="bg-primary text-light">quantidade</th>
-            <th class="bg-primary text-light">Preço  (R$)</th>
-            <th class="bg-primary text-light">Data da venda</th>
+            <th class="bg-primary text-light">Quantidade</th>
+            <th class="bg-primary text-light">Preço (R$)</th>
+            <th class="bg-primary text-light">Data da Venda</th>
         </tr>
         </thead>
         <tbody>
         @foreach ($registros as $registro)
             <tr>
                 <td>{{ $registro->id }}</td>
-                <td>{{ $registro->nome_produto }}</td>
-                <td>{{ $registro->quantidade }}</td>
-                <td>{{ $registro->preco }}</td>
-                <td>{{ $registro->data_venda_br }}</td>
+                <td style="text-align: justify">{{ $registro->nome_produto }}</td>
+                <td style="width: 100px;">{{ $registro->quantidade }}</td>
+                <td style="width: 140px;">{{ $registro->preco }}</td>
+                <td style="width: 180px;">{{ $registro->data_venda_br }}</td>
             </tr>
         @endforeach
         </tbody>
     </table>
+
+@else
+    <div class="alert alert-info" role="alert">
+        Nenhum registro encontrado.
+    </div>
+@endif
+
 
     <div class="d-flex justify-content-between align-items-center">
         <div>
             {{ $registros->links() }}
         </div>
         <div >
-            <a href="{{ route('exportar') }}" class="btn btn-primary mb-2 mr-2">Exportar Excel</a>
+            <a href="{{ route('exportar') }}" class="btn btn-success mb-2 mr-2">Exportar Excel</a>
             <a href="{{route('pdf')}}" class="btn btn-danger text-light mb-2 ">Exportar PDF</a>
         </div>
     </div>
@@ -58,7 +94,8 @@
 
 .container {
     width: 100%;
-   
+    padding-right: 15px;
+    padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -83,6 +120,7 @@
     padding: 0.75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
+    text-align: center;
 }
 
 .bg-primary {

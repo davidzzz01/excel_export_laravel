@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [VendasController::class, 'index']);
+Route::get('/', [VendasController::class, 'index'])->name('index');
 Route::get('/vendas',[VendasController::class, 'exportExcel'])->name('exportar');
 Route::get('/pdf',[VendasController::class, 'gerarPDF'])->name('pdf');
+Route::get('/busca', [VendasController::class, 'buscarRegistro'])->name('buscarRegistro');
 
