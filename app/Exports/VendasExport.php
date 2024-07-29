@@ -23,8 +23,8 @@ class VendasExport implements FromCollection
             'ID',
             'Nome do Produto',
             'Quantidade',
-            'Preço',
             'Data da Venda',
+            'Preço'
         ];
     }
 }

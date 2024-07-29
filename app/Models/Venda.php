@@ -28,12 +28,15 @@ class Venda extends Model
         return isset($this->attributes['data_venda']) ? Carbon::parse($this->attributes['data_venda'])->format('d/m/Y') : null;
     }
   
+    
    
    
     public function getPrecoAttribute($preco)
     {
         return number_format($preco, 2, ',', '.');
     }
+
+ 
 
     protected $appends = ['data_venda_br', 'preco'];
 }

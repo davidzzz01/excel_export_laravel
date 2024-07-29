@@ -33,12 +33,19 @@ class VendasController extends Controller
 public function gerarPDF() {
 
     $registros = Venda::all();
-    $registros=Venda::paginate('50');
-  
-  
-
-
-    $pdf = Pdf::loadView('index', compact('registros'));
+    $totalGeral = 0;
+    
+    foreach ($registros as $registro) {
+        $preco_br = floatval($registro->preco);
+        $totalGeral += $registro->quantidade * $preco_br;
+    }
+    
+   
+    $totalGeralFormatado = number_format($totalGeral, 2, ',', '.');
+    
+    $pdf = Pdf::loadView('relatorio', compact('registros', 'totalGeralFormatado'));
+    
+    
 
 
     return $pdf->download('relatório.pdf');
