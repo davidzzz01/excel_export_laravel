@@ -35,12 +35,11 @@ public function gerarPDF() {
     $registros = Venda::all();
     $totalGeral = 0;
     
-    foreach ($registros as $registro) {
-        $preco_br = floatval($registro->preco);
+     foreach ($registros as $registro) {
+         $preco_br = floatval($registro->preco);
         $totalGeral += $registro->quantidade * $preco_br;
-    }
-    
-   
+   }
+ 
     $totalGeralFormatado = number_format($totalGeral, 2, ',', '.');
     
     $pdf = Pdf::loadView('relatorio', compact('registros', 'totalGeralFormatado'));

@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -70,7 +69,7 @@
         font-weight: bold;
         background-color: #007bff;
         color:white;
-        height: 70px;
+        height: 50px;
     }
     .text-right {
         text-align: right;
