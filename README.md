@@ -15,5 +15,20 @@ Retorno em formato xlsx:
 
 
 
+Relatório em PDF:
+
+![image](https://github.com/user-attachments/assets/1d163cb6-1b01-4666-841d-42836dbfabaf)
+
+
+
+
+
+
+![image](https://github.com/user-attachments/assets/28ed0872-cb39-41b7-b013-8d96130cba14)
+
+
+
+
+
 
 
